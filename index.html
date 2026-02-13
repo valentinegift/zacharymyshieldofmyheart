@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Val&#39;s Day ♥️ Placeholder untuk judul -->
+    <title>Val&#39;s Day ♥️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #F7EEED;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333;
+            touch-action: pan-y;
+        }
+
+        /* Pink Color Palette */
+        :root {
+            --color-1: #F7EEED;
+            --color-2: #FAE6E7;
+            --color-3: #F7D1D8;
+            --color-4: #F4BBC9;
+            --color-5: #F6A6BB;
+        }
+
+        /* Main background */
+        .main-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://files.catbox.moe/rem5aa.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 20px 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Page 1: Heart Clicker */
+        .clicker-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .clicker-title {
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: var(--color-5);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px rgba(247, 209, 216, 0.5);
+        }
+
+        .heart-clicker {
+            width: 180px;
+            height: 180px;
+            background-image: url('https://files.catbox.moe/yudxt3.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0 auto 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .heart-clicker:active {
+            transform: scale(0.9);
+        }
+
+        .click-counter {
+            font-size: 2rem;
+            color: var(--color-5);
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 4px solid var(--color-4);
+            box-shadow: 0 8px 20px rgba(246, 166, 187, 0.3);
+        }
+
+        .click-instruction {
+            font-size: 1.3rem;
+            color: var(--color-4);
+            margin-top: 20px;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        /* Page 2: Valentine Letter */
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .letter-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(246, 166, 187, 0.4);
+            border: 10px solid var(--color-3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: linear-gradient(90deg, var(--color-4), var(--color-5));
+        }
+
+        .letter-title {
+            font-size: clamp(2.2rem, 8vw, 3rem);
+            color: var(--color-5);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .letter-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--color-4);
+            border-radius: 2px;
+        }
+
+        .letter-content {
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            line-height: 1.8;
+            color: #555;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(247, 238, 237, 0.5);
+            border-radius: 20px;
+            border-left: 8px solid var(--color-5);
+            margin-bottom: 40px;
+            white-space: pre-line;
+        }
+
+        .next-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--color-4), var(--color-5));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-family: 'Chewy', cursive;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(246, 166, 187, 0.4);
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+
+        .next-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Page 3: Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px 60px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 9vw, 3.5rem);
+            color: var(--color-5);
+            text-shadow: 3px 3px 0px rgba(247, 209, 216, 0.5);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: var(--color-4);
+            margin-bottom: 10px;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Love Meter */
+        .love-meter-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 35px rgba(246, 166, 187, 0.3);
+            border: 6px solid var(--color-3);
+            text-align: center;
+        }
+
+        .meter-title {
+            font-size: 2.2rem;
+            color: var(--color-5);
+            margin-bottom: 25px;
+        }
+
+        .meter-gauge {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            position: relative;
+        }
+
+        .gauge-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--color-2) 0%, var(--color-3) 70%, var(--color-4) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gauge-circle::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: white;
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gauge-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            color: var(--color-5);
+            text-shadow: 2px 2px 0px rgba(247, 209, 216, 0.5);
+        }
+
+        .meter-btn {
+            background: linear-gradient(135deg, var(--color-4), var(--color-5));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Chewy', cursive;
+            box-shadow: 0 8px 20px rgba(246, 166, 187, 0.4);
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+
+        .meter-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Sweet Memories */
+        .memories-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 35px rgba(246, 166, 187, 0.3);
+            border: 6px solid var(--color-4);
+            text-align: center;
+        }
+
+        .memories-title {
+            font-size: 2.2rem;
+            color: var(--color-5);
+            margin-bottom: 25px;
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .memory-photo {
+            width: 100%;
+            height: 120px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 4px solid white;
+        }
+
+        .memory-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-photo:hover img {
+            transform: scale(1.1);
+        }
+
+        /* The Reason I Love You Section */
+        .reasons-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 35px rgba(246, 166, 187, 0.3);
+            border: 6px solid var(--color-2);
+            text-align: center;
+            grid-column: 1 / -1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .reasons-title {
+            font-size: 2.5rem;
+            color: var(--color-5);
+            margin-bottom: 30px;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .reason-item {
+            background: rgba(247, 238, 237, 0.5);
+            border-radius: 20px;
+            padding: 30px 25px;
+            border: 4px solid var(--color-3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(246, 166, 187, 0.3);
+        }
+
+        .reason-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-4), var(--color-5));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(246, 166, 187, 0.5);
+        }
+
+        .reason-text {
+            font-size: 1.4rem;
+            color: #555;
+            line-height: 1.6;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reason-heart {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .reason-heart:nth-child(1) {
+            top: 10px;
+            left: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .reason-heart:nth-child(2) {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(15deg);
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-1), var(--color-3));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-heart {
+            width: 80px;
+            height: 80px;
+            background: var(--color-5);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 15px 35px rgba(246, 166, 187, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            color: var(--color-5);
+            text-align: center;
+        }
+
+        /* Flower rain effect */
+        .flower-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            display: none;
+        }
+
+        .flower-rain.active {
+            display: block;
+        }
+
+        .falling-flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://files.catbox.moe/h21gqs.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Heart explosion effect */
+        .heart-explosion {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            display: none;
+        }
+
+        .heart-explosion.active {
+            display: block;
+        }
+
+        .exploding-heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://files.catbox.moe/yudxt3.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) translate(var(--tx), var(--ty)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .memories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .meter-gauge {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .gauge-text {
+                font-size: 3rem;
+            }
+            
+            .heart-clicker {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .letter-box {
+                padding: 30px 20px;
+            }
+            
+            .reason-item {
+                padding: 25px 20px;
+            }
+            
+            .reason-text {
+                font-size: 1.3rem;
+                min-height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .meter-title,
+            .memories-title,
+            .reasons-title {
+                font-size: 1.8rem;
+            }
+            
+            .memory-photo {
+                height: 100px;
+            }
+            
+            .meter-gauge {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .gauge-text {
+                font-size: 2.5rem;
+            }
+            
+            .heart-clicker {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .click-counter {
+                font-size: 1.6rem;
+                padding: 8px 25px;
+            }
+            
+            .click-instruction {
+                font-size: 1.1rem;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .reason-text {
+                font-size: 1.2rem;
+                min-height: 90px;
+            }
+            
+            .reason-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.6rem;
+                line-height: 45px;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 600px) {
+            .clicker-container {
+                min-height: auto;
+                padding: 20px 0;
+            }
+            
+            .heart-clicker {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .reasons-container {
+                grid-column: 1 / -1;
+            }
+            
+            .memory-photo {
+                height: 90px;
+            }
+            
+            .reason-text {
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="main-bg"></div>
+
+    <!-- Loading screen -->
+    <div class="loading" id="loading">
+        <div class="loading-heart">💖</div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Flower rain effect -->
+    <div class="flower-rain" id="flowerRain"></div>
+
+    <!-- Heart explosion effect -->
+    <div class="heart-explosion" id="heartExplosion"></div>
+
+    <!-- Page 1: Heart Clicker -->
+    <div class="page active" id="page1">
+        <div class="clicker-container">
+            <h1 class="clicker-title">Click me</h1>
+            <div class="heart-clicker" id="heartClicker"></div>
+            <div class="click-counter" id="clickCounter">0/10 clicks</div>
+            <p class="click-instruction">Click me 10 times to unlock the suprise</p>
+        </div>
+    </div>
+
+    <!-- Page 2: Valentine Letter -->
+    <div class="page" id="page2">
+        <div class="letter-container">
+            <div class="letter-box">
+                <h2 class="letter-title">Happy Valentine, My Hartendief, Zachary Evan</h2>
+                <div class="letter-content" id="letterContent">
+                    <!-- Happy Valentine’s Day, Kak Evan, my love, my life. Every year you pass through, I will walk beside you without hesitation, scattering prayers along each step your feet take farther. If time is a raging river rushing endlessly forward, allow me to be the shore that faithfully keeps you safe from its fiercest currents. <br><br>Truly, forever is Valentine’s Day made special for you, my dearest. There’s no need to wait for February with its flowers on display, because every second of your laughter already makes my soul bloom. May every curve of your smile burst like fireworks in joyful light. As long as I can still behold your smile, my love will keep growing beyond measure.<br><br>Truly, forever is Valentine’s Day. As long as your name is spoken in my endless prayers, as long as I can look into your eyes with an open heart, my love will remain and continue to grow. While the world celebrates love with roses and boxes of chocolate, I choose to celebrate it through the rhythm of your heartbeat that never fades. Every breath you take is a song that echoes far, every step you leave is a compass guiding me home. <br><br>So, happy Valentine’s Day, my beloved. May our laughter always stretch long and bright, soothing the weariness that sometimes gathers. May we carry a love that keeps expanding deeper beyond measure, warmer with each passing day embracing all the days ahead of us. Placeholder untuk isi surat cinta -->
+                    Happy Valentine’s Day, Kak Evan, my love, my life. Every year you pass through, I will walk beside you without hesitation, scattering prayers along each step your feet take farther. If time is a raging river rushing endlessly forward, allow me to be the shore that faithfully keeps you safe from its fiercest currents. <br><br>Truly, forever is Valentine’s Day made special for you, my dearest. There’s no need to wait for February with its flowers on display, because every second of your laughter already makes my soul bloom. May every curve of your smile burst like fireworks in joyful light. As long as I can still behold your smile, my love will keep growing beyond measure.<br><br>Truly, forever is Valentine’s Day. As long as your name is spoken in my endless prayers, as long as I can look into your eyes with an open heart, my love will remain and continue to grow. While the world celebrates love with roses and boxes of chocolate, I choose to celebrate it through the rhythm of your heartbeat that never fades. Every breath you take is a song that echoes far, every step you leave is a compass guiding me home. <br><br>So, happy Valentine’s Day, my beloved. May our laughter always stretch long and bright, soothing the weariness that sometimes gathers. May we carry a love that keeps expanding deeper beyond measure, warmer with each passing day embracing all the days ahead of us.
+                </div>
+                <button class="next-btn" id="nextBtn">Continue to Our Page...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Main Content -->
+    <div class="page" id="page3">
+        <div class="main-container">
+            <div class="header">
+                <h1 class="main-title">Epias (Epul Illias Files)</h1>
+                <div class="subtitle">:3</div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Love Meter -->
+                <div class="love-meter-container">
+                    <h3 class="meter-title">Our Love Meter 💕</h3>
+                    <div class="meter-gauge">
+                        <div class="gauge-circle"></div>
+                        <div class="gauge-text" id="lovePercent">∞%</div>
+                    </div>
+                    <button class="meter-btn" id="loveBtn">measure our love</button>
+                </div>
+
+                <!-- Sweet Memories -->
+                <div class="memories-container">
+                    <h3 class="memories-title">sweet memories</h3>
+                    <div class="memories-grid">
+                        <!-- 
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002066.jpg" alt="Memory 1">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002073.jpg" alt="Memory 2">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002079.jpg" alt="Memory 3">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002085.jpg" alt="Memory 4">
+                </div> Placeholder untuk 4 foto -->
+                        
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002066.jpg" alt="Memory 1">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002073.jpg" alt="Memory 2">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002079.jpg" alt="Memory 3">
+                </div>
+                <div class="memory-photo">
+                    <img src="images/photo_6168780180_1771002085.jpg" alt="Memory 4">
+                </div>
+                    </div>
+                </div>
+
+                <!-- The Reason I Love You -->
+                <div class="reasons-container">
+                    <h3 class="reasons-title">The Reason I Love You</h3>
+                    <div class="reasons-grid">
+                        <div class="reason-item">
+                            <div class="reason-heart">💕</div>
+                            <div class="reason-heart">💕</div>
+                            <div class="reason-number">1</div>
+                            <div class="reason-text" id="reason1">
+                                <!-- 1. A little things you do to make me happy Placeholder untuk alasan 1 -->
+                                1. A little things you do to make me happy
+                            </div>
+                        </div>
+                        <div class="reason-item">
+                            <div class="reason-heart">💖</div>
+                            <div class="reason-heart">💖</div>
+                            <div class="reason-number">2</div>
+                            <div class="reason-text" id="reason2">
+                                <!-- 2. Stay up for me even on your tired day Placeholder untuk alasan 2 -->
+                                2. Stay up for me even on your tired day
+                            </div>
+                        </div>
+                        <div class="reason-item">
+                            <div class="reason-heart">💗</div>
+                            <div class="reason-heart">💗</div>
+                            <div class="reason-number">3</div>
+                            <div class="reason-text" id="reason3">
+                                <!-- 3. Respect me to the fullest Placeholder untuk alasan 3 -->
+                                3. Respect me to the fullest
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const loading = document.getElementById('loading');
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            const page3 = document.getElementById('page3');
+            const heartClicker = document.getElementById('heartClicker');
+            const clickCounter = document.getElementById('clickCounter');
+            const nextBtn = document.getElementById('nextBtn');
+            const loveBtn = document.getElementById('loveBtn');
+            const lovePercent = document.getElementById('lovePercent');
+            const flowerRain = document.getElementById('flowerRain');
+            const heartExplosion = document.getElementById('heartExplosion');
+            
+            // Reason elements
+            const reason1 = document.getElementById('reason1');
+            const reason2 = document.getElementById('reason2');
+            const reason3 = document.getElementById('reason3');
+            
+            // Variables
+            let clickCount = 0;
+            const requiredClicks = 10;
+            let isMeasuring = false;
+            
+            // Customizable reasons
+            const customReasons = [
+                "You have the most beautiful heart and the kindest soul I've ever known.",
+                "Your smile makes every day brighter and every moment more special.",
+                "You understand me like no one else and love me for exactly who I am."
+            ];
+            
+            // Set reasons from placeholders
+            if (reason1.textContent === '1. A little things you do to make me happy') {
+                reason1.textContent = customReasons[0];
+            }
+            if (reason2.textContent === '2. Stay up for me even on your tired day') {
+                reason2.textContent = customReasons[1];
+            }
+            if (reason3.textContent === '3. Respect me to the fullest') {
+                reason3.textContent = customReasons[2];
+            }
+            
+            // Hide loading screen
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1500);
+            
+            // Heart clicker functionality
+            heartClicker.addEventListener('click', function() {
+                clickCount++;
+                clickCounter.textContent = `${clickCount}/${requiredClicks} clicks`;
+                
+                // Haptic feedback
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(30);
+                }
+                
+                // Heart animation
+                this.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Create click effect
+                createClickEffect(event);
+                
+                // Check if reached required clicks
+                if (clickCount >= requiredClicks) {
+                    // Heart explosion effect
+                    createHeartExplosion();
+                    
+                    // Transition to next page after delay
+                    setTimeout(() => {
+                        page1.classList.remove('active');
+                        page2.classList.add('active');
+                    }, 1000);
+                }
+            });
+            
+            // Next button
+            nextBtn.addEventListener('click', function() {
+                // Haptic feedback
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50);
+                }
+                
+                // Transition to main page
+                page2.classList.remove('active');
+                page3.classList.add('active');
+                
+                // Add animation to reason items
+                animateReasonItems();
+            });
+            
+            // Love meter button
+            loveBtn.addEventListener('click', function() {
+                if (isMeasuring) return;
+                
+                isMeasuring = true;
+                
+                // Haptic feedback
+                if ('vibrate' in navigator) {
+                    navigator.vibrate([30, 50, 30]);
+                }
+                
+                // Start measurement animation
+                let percent = 0;
+                const interval = setInterval(() => {
+                    percent += Math.random() * 15;
+                    if (percent >= 100) {
+                        percent = 100;
+                        clearInterval(interval);
+                        isMeasuring = false;
+                        
+                        // Show infinite love
+                        setTimeout(() => {
+                            lovePercent.textContent = '∞%';
+                            lovePercent.style.color = '#F6A6BB';
+                            lovePercent.style.fontSize = '4rem';
+                            triggerFlowerRain();
+                        }, 300);
+                    }
+                    
+                    lovePercent.textContent = Math.min(Math.floor(percent), 100) + '%';
+                    
+                    // Change color based on percentage
+                    if (percent < 50) {
+                        lovePercent.style.color = '#F4BBC9';
+                    } else if (percent < 80) {
+                        lovePercent.style.color = '#F7D1D8';
+                    } else {
+                        lovePercent.style.color = '#F6A6BB';
+                    }
+                }, 50);
+            });
+            
+            // Functions
+            function createClickEffect(event) {
+                const rect = heartClicker.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    background: rgba(246, 166, 187, 0.5);
+                    border-radius: 50%;
+                    top: ${y}px;
+                    left: ${x}px;
+                    transform: translate(-50%, -50%);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                    z-index: 10;
+                `;
+                
+                // Add animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes ripple {
+                        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                        100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                heartClicker.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+            
+            function createHeartExplosion() {
+                heartExplosion.classList.add('active');
+                heartExplosion.innerHTML = '';
+                
+                // Create exploding hearts
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('exploding-heart');
+                    
+                    // Random explosion direction
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 100 + Math.random() * 200;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    // Random start position around the clicker
+                    const rect = heartClicker.getBoundingClientRect();
+                    const startX = rect.left + rect.width / 2;
+                    const startY = rect.top + rect.height / 2;
+                    
+                    heart.style.cssText = `
+                        left: ${startX}px;
+                        top: ${startY}px;
+                        --tx: ${tx}px;
+                        --ty: ${ty}px;
+                        animation-delay: ${Math.random() * 0.3}s;
+                    `;
+                    
+                    heartExplosion.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, 1000);
+                }
+                
+                // Remove explosion effect after animation
+                setTimeout(() => {
+                    heartExplosion.classList.remove('active');
+                }, 1000);
+            }
+            
+            function triggerFlowerRain() {
+                flowerRain.classList.add('active');
+                
+                // Create falling flowers
+                for (let i = 0; i < 20; i++) {
+                    createFallingFlower();
+                }
+                
+                // Stop flower rain after 4 seconds
+                setTimeout(() => {
+                    flowerRain.classList.remove('active');
+                    flowerRain.innerHTML = '';
+                }, 4000);
+            }
+            
+            function createFallingFlower() {
+                const flower = document.createElement('div');
+                flower.classList.add('falling-flower');
+                
+                // Random position and animation
+                const leftPos = Math.random() * 100;
+                const size = 20 + Math.random() * 40;
+                const fallDuration = 2 + Math.random() * 3;
+                const delay = Math.random() * 2;
+                
+                flower.style.left = `${leftPos}%`;
+                flower.style.width = `${size}px`;
+                flower.style.height = `${size}px`;
+                flower.style.animationDuration = `${fallDuration}s`;
+                flower.style.animationDelay = `${delay}s`;
+                
+                flowerRain.appendChild(flower);
+                
+                // Remove flower after animation
+                setTimeout(() => {
+                    if (flower.parentNode) {
+                        flower.remove();
+                    }
+                }, (fallDuration + delay) * 1000);
+            }
+            
+            function animateReasonItems() {
+                const reasonItems = document.querySelectorAll('.reason-item');
+                
+                reasonItems.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.8s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 300 * index + 500);
+                });
+            }
+            
+            // Preload images
+            function preloadImages() {
+                const images = [
+                    'https://files.catbox.moe/rem5aa.jpg',
+                    'https://files.catbox.moe/yudxt3.png',
+                    'https://files.catbox.moe/h21gqs.png'
+                ];
+                
+                images.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            }
+            
+            // Initialize
+            preloadImages();
+            
+            // Mobile touch improvements
+            document.addEventListener('touchstart', function() {}, {passive: true});
+            
+            // Prevent zoom on buttons
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('touchstart', function(e) {
+                    e.stopPropagation();
+                }, {passive: true});
+            });
+        });
+    </script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reasons = ["1. A little things you do to make me happy", "2. Stay up for me even on your tired day", "3. Respect me to the fullest"];
+            const reasonElements = [
+                document.getElementById('reason1'),
+                document.getElementById('reason2'),
+                document.getElementById('reason3')
+            ];
+            
+            for (let i = 0; i < Math.min(reasons.length, reasonElements.length); i++) {
+                if (reasonElements[i] && reasons[i]) {
+                    reasonElements[i].textContent = reasons[i];
+                }
+            }
+        });
+        </script>
+        
+</body>
+</html>
